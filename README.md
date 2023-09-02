@@ -13,3 +13,27 @@
             }
         }
         list.ForEach(p => { Debug.LogWarning(p); });
+
+
+##02.Foreach删除集合元素
+        //用递归的思想，删除完了的集合重新遍历
+        List<string> colors = new List<string>() { "red", "green", "blue", "blue", "gray", "yellow", "white", "orange" };
+        DeleteElement(colors, "blue");
+
+        colors.ForEach(p => { Debug.LogWarning(p); });
+
+
+    void DeleteElement(List<string> list, string delStr)
+    {
+        foreach (var item in list)
+        {
+            if (delStr.Equals(item))
+            {
+                list.Remove(item);
+
+                //用递归的思想，删除完了的集合重新遍历
+                DeleteElement(list, delStr);
+                return;
+            }
+        }
+    }
